@@ -50,5 +50,14 @@ export default function QueryProcessor(query: string): string {
       return `${perfectSixthPowers.join(', ')}`;
   
   }
+
+  const multiplicationMatch = normalizedQuery.match(/(\d+)\s*multiplied\s*by\s*(\d+)/);
+  if (multiplicationMatch) {
+    const num1 = parseInt(multiplicationMatch[1], 10);
+    const num2 = parseInt(multiplicationMatch[2], 10);
+    const result = num1 * num2;
+    return result.toString();
+  }
+  
   return "";
 }
