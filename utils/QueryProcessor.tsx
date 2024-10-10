@@ -47,7 +47,7 @@ export default function QueryProcessor(query: string): string {
       return Number.isInteger(root) && Number.isInteger(Math.sqrt(num));
     });
 
-      return `${perfectSixthPowers.join(', ')}`;
+      return `${perfectSixthPowers.join(' ')}`;
   
   }
 
@@ -68,7 +68,7 @@ export default function QueryProcessor(query: string): string {
     const primes = numbers.filter(isPrime);
 
 
-      return `${primes.join(', ')}`;
+      return `${primes.join(' ')}`;
 
   }
   return "";
