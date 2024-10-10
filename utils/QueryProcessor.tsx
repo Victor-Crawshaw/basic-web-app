@@ -84,13 +84,18 @@ export default function QueryProcessor(query: string): string {
 
   const exponentiationMatch = normalizedQuery.match(/(\d+)\s*to the power of\s*(\d+)/);
   if (exponentiationMatch) {
-    const base = parseInt(exponentiationMatch[1], 10);
+    const base = BigInt(exponentiationMatch[1]);
     const exponent = parseInt(exponentiationMatch[2], 10);
-    const result = Math.pow(base, exponent);
+    
+    let result = BigInt(1);
+    for (let i = 0; i < exponent; i++) {
+      result *= base;
+    }
+    
     return result.toString();
   }
 
-  
+
   return "";
 }
 function isPrime(num: number): boolean {
