@@ -1,4 +1,5 @@
 export default function QueryProcessor(query: string): string {
+  const normalizedQuery = query.toLowerCase();
   if (query.toLowerCase().includes("shakespeare")) {
     return (
       "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -16,6 +17,14 @@ export default function QueryProcessor(query: string): string {
     return (
       "vicben"
     );
+  }
+
+  const mathMatch = normalizedQuery.match(/(\d+)\s*plus\s*(\d+)/);
+  if (mathMatch) {
+    const num1 = parseInt(mathMatch[1], 10);
+    const num2 = parseInt(mathMatch[2], 10);
+    const result = num1 + num2;
+    return result.toString();
   }
 
   return "";
