@@ -95,6 +95,21 @@ export default function QueryProcessor(query: string): string {
     return result.toString();
   }
 
+  const operationMatch = normalizedQuery.match(/(\d+)\s*(plus|multiplied by)\s*(\d+)\s*(multiplied by|plus)\s*(\d+)/);
+  if (operationMatch) {
+    const num1 = parseInt(operationMatch[1], 10);
+    const num2 = parseInt(operationMatch[3], 10);
+    const num3 = parseInt(operationMatch[5], 10);
+    
+    let result = 0;
+    if (operationMatch[2] === 'plus' && operationMatch[4] === 'multiplied by') {
+      result = num1 + (num2 * num3);
+    } else if (operationMatch[2] === 'multiplied by' && operationMatch[4] === 'plus') {
+      result = (num1 * num2) + num3;
+    }
+    return result.toString();
+  }
+
 
   return "";
 }
