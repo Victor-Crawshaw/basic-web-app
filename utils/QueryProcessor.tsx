@@ -81,6 +81,16 @@ export default function QueryProcessor(query: string): string {
     const result = num1 - num2;
     return result.toString();
   }
+
+  const exponentiationMatch = normalizedQuery.match(/(\d+)\s*to the power of\s*(\d+)/);
+  if (exponentiationMatch) {
+    const base = parseInt(exponentiationMatch[1], 10);
+    const exponent = parseInt(exponentiationMatch[2], 10);
+    const result = Math.pow(base, exponent);
+    return result.toString();
+  }
+
+  
   return "";
 }
 function isPrime(num: number): boolean {
