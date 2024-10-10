@@ -71,6 +71,14 @@ export default function QueryProcessor(query: string): string {
       return `${primes.join(' ')}`;
 
   }
+
+  const subtractionMatch = normalizedQuery.match(/(\d+)\s*minus\s*(\d+)/);
+  if (subtractionMatch) {
+    const num1 = parseInt(subtractionMatch[1], 10);
+    const num2 = parseInt(subtractionMatch[2], 10);
+    const result = num1 - num2;
+    return result.toString();
+  }
   return "";
 }
 function isPrime(num: number): boolean {
