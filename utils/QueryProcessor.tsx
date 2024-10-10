@@ -19,11 +19,13 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
-  const mathMatch = normalizedQuery.match(/(\d+)\s*plus\s*(\d+)/);
-  if (mathMatch) {
-    const num1 = parseInt(mathMatch[1], 10);
-    const num2 = parseInt(mathMatch[2], 10);
-    const result = num1 + num2;
+  const additionMatch = normalizedQuery.match(/(\d+(\s*plus\s*\d+)+)/);
+  if (additionMatch) {
+    const numbers = additionMatch[0]
+      .split('plus')
+      .map(num => parseInt(num.trim(), 10));
+      
+    const result = numbers.reduce((acc, num) => acc + num, 0);
     return result.toString();
   }
 
