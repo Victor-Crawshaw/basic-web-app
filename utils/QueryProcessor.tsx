@@ -27,5 +27,13 @@ export default function QueryProcessor(query: string): string {
     return result.toString();
   }
 
+  const largestMatch = normalizedQuery.match(/which of the following numbers is the largest: (\d+), (\d+), (\d+)/);
+  if (largestMatch) {
+    const num1 = parseInt(largestMatch[1], 10);
+    const num2 = parseInt(largestMatch[2], 10);
+    const num3 = parseInt(largestMatch[3], 10);
+    const largest = Math.max(num1, num2, num3);
+    return `The largest number is ${largest}.`;
+  }
   return "";
 }
