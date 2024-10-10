@@ -35,5 +35,20 @@ export default function QueryProcessor(query: string): string {
     const largest = Math.max(num1, num2, num3);
     return largest.toString();
   }
+
+  const squareCubeMatch = normalizedQuery.match(/which of the following numbers is both a square and a cube: ([\d,\s]+)/);
+  if (squareCubeMatch) {
+    const numbers = squareCubeMatch[1]
+      .split(',')
+      .map(num => parseInt(num.trim(), 10));
+
+    const perfectSixthPowers = numbers.filter(num => {
+      const root = Math.cbrt(num);
+      return Number.isInteger(root) && Number.isInteger(Math.sqrt(num));
+    });
+
+      return `${perfectSixthPowers.join(', ')}.`;
+  
+  }
   return "";
 }
