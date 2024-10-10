@@ -33,7 +33,7 @@ export default function QueryProcessor(query: string): string {
     const num2 = parseInt(largestMatch[2], 10);
     const num3 = parseInt(largestMatch[3], 10);
     const largest = Math.max(num1, num2, num3);
-    return `The largest number is ${largest}.`;
+    return largest.toString();
   }
   return "";
 }
