@@ -12,5 +12,11 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
+  if (query.toLowerCase().includes("your name")) {
+    return (
+      "Your name is vcrawsha."
+    );
+  }
+
   return "";
 }
